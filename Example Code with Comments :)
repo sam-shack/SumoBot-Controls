@@ -1,0 +1,79 @@
+/*
+   Gamepad module provides three different modes this one is set up for Digital mode
+
+   More INFO on: https://thestempedia.com/docs/dabble/game-pad-module/ 
+*/
+
+//include lines 8-10 so you can work with the right library
+#define CUSTOM_SETTINGS
+#define INCLUDE_GAMEPAD_MODULE
+#include <Dabble.h>
+
+//below is the setup for the bluetooth and Serial Monitor 
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(250000);      // make sure your Serial Monitor is also set at this baud rate. SAM LOOK AT THIS
+  Dabble.begin(9600);      //Enter baudrate of your bluetooth.
+}
+
+void loop() {
+  Dabble.processInput(); //this function is used to refresh data obtained. Calling this function is mandatory in order to get data properly from your phone.
+  Serial.print("KeyPressed: ");
+
+/*
+    Instead of having Serial.print("BLAH") fill in your own commands such as turning ON your right_motor
+      ~ using the Serial.print commands below can be helpful to test that the bluetooth is successfully connected ~ 
+*/
+
+  if (GamePad.isUpPressed())
+  {
+    Serial.print("UP");
+  }
+
+  if (GamePad.isDownPressed())
+  {
+    Serial.print("DOWN");
+  }
+
+  if (GamePad.isLeftPressed())
+  {
+    Serial.print("Left");
+  }
+
+  if (GamePad.isRightPressed())
+  {
+    Serial.print("Right");
+  }
+
+  if (GamePad.isSquarePressed())
+  {
+    Serial.print("Square");
+  }
+
+  if (GamePad.isCirclePressed())
+  {
+    Serial.print("Circle");
+  }
+
+  if (GamePad.isCrossPressed())
+  {
+    Serial.print("Cross");
+  }
+
+  if (GamePad.isTrianglePressed())
+  {
+    Serial.print("Triangle");
+  }
+
+  if (GamePad.isStartPressed())
+  {
+    Serial.print("Start");
+  }
+
+  if (GamePad.isSelectPressed())
+  {
+    Serial.print("Select");
+  }
+  Serial.print('\t');
+
+}
