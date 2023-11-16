@@ -1,10 +1,14 @@
 /*
-   Gamepad module provides three different modes this one is set up for Digital mode
+SUMOBOT CONTROLS for Dabble app and HM-10 module!!!!
+ 
+   To control your bots we'll use the Gamepad module. 
+   The Gamepad module provides three different modes this one is set up for Digital mode. (check out the other modules and modes if you'd like!!)
+       - Digital mode gives you 10 buttons :)
 
-   More INFO on: https://thestempedia.com/docs/dabble/game-pad-module/ 
+   More INFO on Dabble: https://thestempedia.com/docs/dabble/game-pad-module/ 
 */
 
-//include lines 8-10 so you can work with the right library
+//include lines 8-10 so you can work with the right library *make sure you downloaded 1.5.2 version (see pwrpoint for instructions)
 #define CUSTOM_SETTINGS
 #define INCLUDE_GAMEPAD_MODULE
 #include <Dabble.h>
@@ -12,17 +16,22 @@
 //below is the setup for the bluetooth and Serial Monitor 
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin(250000);      // make sure your Serial Monitor is also set at this baud rate. SAM LOOK AT THIS
-  Dabble.begin(9600);      //Enter baudrate of your bluetooth.
+  Serial.begin(250000);      // IMPORTANT: make sure your Serial Monitor is also set at this baud rate. 
+  Dabble.begin(9600);      // this is the baudrate of your bluetooth 
 }
 
 void loop() {
   Dabble.processInput(); //this function is used to refresh data obtained. Calling this function is mandatory in order to get data properly from your phone.
-  Serial.print("KeyPressed: ");
+  Serial.print("KeyPressed: "); // This is just printing into the Serial Monitor good way to check if you're connected :) 
 
 /*
-    Instead of having Serial.print("BLAH") fill in your own commands such as turning ON your right_motor
-      ~ using the Serial.print commands below can be helpful to test that the bluetooth is successfully connected ~ 
+THE WAY IT WORKS:
+   When you click one of the buttons on the app it'll register as ON in the Arduino script and run whatever you have under the if (GamePad.isBLAHPressed())
+    ... SO instead of having Serial.print("BLAH") put in your own commands such as turning ON your right_motor
+    ^^ These commands will depend on what functions you want and what motor driver you went with
+
+FOR WHAT IS WRITTEN BELOW:     
+~ using the Serial.print commands below can be helpful to test that the bluetooth is successfully connected ~ 
 */
 
   if (GamePad.isUpPressed())
